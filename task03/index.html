@@ -1,0 +1,455 @@
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
+
+    <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+    <script type='text/javascript' src='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js'></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Fuel Picker</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+
+    <script type="text/javascript">
+        var latitude;
+        var longitude;
+        var marker = new Array();
+        $(document).ready(function () {
+            for(i=0;i<marker.length;i++) {
+                map.removeLayer(marker[i]);
+            }
+            marker = new Array();
+            $("#btn1").click(function () {
+                $.getJSON('names.txt', function (data) {
+                    $.each(data.benzinski, function (i, ben) {
+                        if (ben.name == "" || ben.name == "none") {
+
+                        } else {
+                            var ime = ben.name;
+                            var lon = ben.lon;
+                            var lat = ben.lat;
+                            var LamMarker = L.marker([lat, lon])
+                                .bindPopup('<label>' + ime + '</label>')
+                                    .addTo(map);
+                            marker.push(LamMarker);
+                        }
+                    });
+                }).error(function () {
+                    console.log('error');
+                });
+            });
+            $("#btn2").click(function () {
+                for(i=0;i<marker.length;i++) {
+                    map.removeLayer(marker[i]);
+                }
+                marker = new Array();
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        latitude = position.coords.latitude;
+                        longitude = position.coords.longitude;
+                    })
+                }
+                $.getJSON('names.txt', function (data) {
+                    $.each(data.benzinski, function (i, ben) {
+                        var ime = ben.name;
+                        var lon = ben.lon;
+                        var lat = ben.lat;
+                        if(parseFloat(lon).toFixed(0) == parseFloat(longitude).toFixed(0)
+                            && parseFloat(lat).toFixed(0) == parseFloat(latitude).toFixed(0) ) {
+                            if (ben.name == "" || ben.name == "none") {
+
+                            } else {
+                                var LamMarker= L.marker([lat, lon])
+                                    .bindPopup('<label>' + ime + '</label>')
+                                    .addTo(map);
+                                marker.push(LamMarker);
+                            }
+                        }
+                    });
+                }).error(function () {
+                    console.log('error');
+                });
+            });
+            $(".btn-right").click(function (){
+                var input = $('#enterName').val();
+
+                for(i=0;i<marker.length;i++) {
+                    map.removeLayer(marker[i]);
+                }
+                marker = new Array();
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        latitude = position.coords.latitude;
+                        longitude = position.coords.longitude;
+                    })
+                }
+                $.getJSON('names.txt', function (data) {
+                    $.each(data.benzinski, function (i, ben) {
+                        var ime = ben.name;
+                        var lon = ben.lon;
+                        var lat = ben.lat;
+                        if(parseFloat(lon).toFixed(0) == parseFloat(longitude).toFixed(0)
+                            && parseFloat(lat).toFixed(0) == parseFloat(latitude).toFixed(0) ) {
+                            if (ben.name == "" || ben.name == "none") {
+
+                            } else if(ben.name == input) {
+                                var LamMarker= L.marker([lat, lon])
+                                    .bindPopup('<label>' + ime + '</label>')
+                                    .addTo(map);
+                                marker.push(LamMarker);
+                            }
+                        }
+                    });
+                }).error(function () {
+                    console.log('error');
+                });
+            })
+            $(".btn-location").click(function () {
+                    if ("geolocation" in navigator) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            latitude = position.coords.latitude;
+                            longitude = position.coords.longitude;
+                            markers = [
+                                {
+                                    "name": "Your Location",
+                                    "lat": latitude,
+                                    "lng": longitude
+                                }
+                            ];
+
+
+                            for ( var i=0; i < markers.length; ++i )
+                            {
+                                L.marker( [markers[i].lat, markers[i].lng] )
+                                    .bindPopup( '<label>' + markers[i].name + '</label>' )
+                                    .addTo( map );
+
+                            }
+
+                        });
+                    } else {
+                        console.log("Browser doesn't support geolocation!");
+                    }
+
+                }
+            );
+        });
+
+    </script>
+
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        width: 60%;
+        margin: 0 auto;
+        background-color: #fff;
+    }
+
+    header {
+        padding: 20px 20px;
+    }
+
+    h1 {
+        font-size: 80px;
+        color: #1b1c25;
+        margin-bottom: 10px;
+    }
+
+    span {
+        margin-left: 10px;
+        color: #c05555;
+    }
+
+    h2 {
+        color: #556052;
+        font-weight: 300;
+        font-size: 30px;
+    }
+
+    .navigation {
+        background-color: #59886b;
+        padding: 5px 20px;
+    }
+
+    ul {
+        display: flex;
+        list-style-type: none;
+    }
+
+    ul li {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .navigation a {
+        color: #fff8c1;
+
+        font-size: 14px;
+        text-decoration: none;
+    }
+
+    .active-link {
+        color: #d3cea6;
+    }
+
+    .search {
+        padding: 30px 20px;
+    }
+
+    .search-form {
+        display: flex;
+    }
+
+    .iframe-map {
+        padding: 0px 20px;
+    }
+
+    .toogleMap {
+        display: none;
+    }
+
+    h3 {
+        color: #556052;
+        margin-bottom: 10px;
+        font-size: 22px;
+    }
+
+    h4 {
+        color: #fff;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    input {
+        background-color: #f3f1f7;
+        border: none;
+        padding: 5px;
+        font-size: 16px;
+        width: 150px;
+        margin-right: 5px;
+    }
+
+    footer {
+        background-color: #59886b;
+        padding: 20px 20px;
+    }
+
+    .icon-home {
+        width: 15px;
+        height: 15px;
+        margin-right: 7px;
+        align-self: center;
+        color: #fff8c1;
+    }
+
+    .navigation-home {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .btn {
+        height: 45px;
+        background-color: #f3f1f7;
+        width: 60px;
+    }
+
+    .btn a {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        color: #59886b;
+    }
+
+    .btn:last-of-type {
+        margin-left: 2px;
+    }
+
+    .btn-right {
+        font-size: 40px;
+    }
+
+    .btn-location {
+        font-size: 30px;
+        margin-top: 5px;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .footer-link {
+        color: #fff8c1;
+        font-size: 30px;
+        margin-right: 10px;
+    }
+
+    .search_results {
+        margin-top: -10px;
+        display: none;
+    }
+
+    .toogleResults {
+        display: block;
+    }
+
+    h5 {
+        font-size: 16px;
+        color: #556052;
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+
+    table {
+        font-size: 14px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    table tr {
+        display: inline-block;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    table tr:first-child {
+        background-color: #59886b;
+        color: #fff;
+    }
+
+    th {
+        font-weight: 300;
+        display: inline-block;
+        padding: 5px 10px;
+        width: 125px;
+        text-align: left;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f3f1f7;
+        color: #000;
+    }
+
+    table tr td {
+        display: inline-block;
+        padding: 5px 10px;
+        width: 125px;
+    }
+</style>
+
+<body>
+<div class="container">
+    <header>
+        <h1>Fuel<span>UP</span></h1>
+        <h2>Find Your Nearest Petrol Station</h2>
+    </header>
+    <nav class="navigation">
+        <ul>
+            <li>
+                <a href="#" class="navigation-home">
+                    <ion-icon name="compass" class="icon-home"></ion-icon>
+                </a>
+
+                <button href="#" id="btn1">ALL FUEL STATIONS IN MACEDONIA</button>
+            </li>
+            <li>
+                <a href="#" class="navigation-home">
+                    <ion-icon name="compass" class="icon-home"></ion-icon>
+                </a>
+
+                <button href="#" id="btn2">NEAREST FUEL STATIONS AROUND YOU</button>
+            </li>
+        </ul>
+    </nav>
+    <section class="search">
+        <h3>Find the nearest petrol station by name</h3>
+        <div class="search-form">
+            <input placeholder="Enter Name" id="enterName"/>
+            <div class="btn">
+                <a href="#"
+                >
+                    <ion-icon name="chevron-forward" class="btn-right"></ion-icon
+                    >
+                </a>
+            </div>
+            <div class="btn">
+                <a href="#"
+                >
+                    <ion-icon name="location" class="btn-location"></ion-icon
+                    >
+                </a>
+            </div>
+        </div>
+    </section>
+    <div class="iframe-map">
+        <div id="map" style="height: 440px; border: 1px solid #AAA;"></div>
+    </div>
+    <div class="search_results">
+        <h5>Search Results</h5>
+        <table id="tabela">
+            <tr>
+                <th>Langitude</th>
+                <th>Latitude</th>
+                <th>Name</th>
+                <th>Open Hours</th>
+            </tr>
+
+        </table>
+    </div>
+    <footer>
+        <h4>Contact Us</h4>
+        <div class="social-links">
+            <a href="#" class="footer-link"
+            >
+                <ion-icon name="logo-facebook"></ion-icon
+                >
+            </a>
+            <a href="#" class="footer-link"
+            >
+                <ion-icon name="logo-twitter"></ion-icon
+                >
+            </a>
+            <a href="#" class="footer-link"
+            >
+                <ion-icon name="logo-instagram"></ion-icon
+                >
+            </a>
+        </div>
+    </footer>
+</div>
+<script>
+    var map = L.map('map', {
+        center: [41.6086, 21.7453],
+        minZoom: 2,
+        zoom: 8
+    });
+
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+</script>
+</body>
+</html>
