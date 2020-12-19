@@ -1,13 +1,25 @@
 const http = require('http');
+const fs = require('fs');
+const port = 8080;
+
 const server = http.createServer(function (req, res){
-    res.setHeader('Content-type', 'index.html');
-    res.setHeader('Access-Control-Allow-Origin', "*");
-    res.writeHead(200);
+    res.writeHead(200, {'Content-type' : 'text/html'})
+    fs.readFile('index.html', function (error, data){
+        if(error){
+            res.writeHead(404)
+            res.write('Error: file not found')
+        }else {
+            res.write(data)
+        }
+        res.end()
+    })
 
-    res.end(index.html);
-});
+})
 
-
-
-
-server.listen(8080);
+server.listen(port, function (error){
+    if(error){
+        console.log('Something went wrong', error)
+    }else{
+        console.log('Server is listening on port' + port)
+    }
+})
