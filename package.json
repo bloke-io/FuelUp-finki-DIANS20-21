@@ -1,10 +1,14 @@
 {
   "name": "FuelUp",
   "version": "1.0.0",
+  "main" : "app.js",
   "description": "",
   "scripts": {
-    "start": "node task03/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+  },
+    "dependencies": {
+    "ejs": "~1.0.0",
+    "express": "~4.9.8"
   },
   "license": "ISC"
 }
