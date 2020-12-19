@@ -1,13 +1,11 @@
 const http = require('http');
+const fs = require('fs').promises;
 const server = http.createServer(function (req, res){
-    res.setHeader('Content-type', 'index.html');
-    res.setHeader('Access-Control-Allow-Origin', "*");
-    res.writeHead(200);
-
-    res.end(index.html);
+    fs.readFile(__dirname + "/index.html")
+        .then(contents => {
+            res.setHeader("Content-Type", "text/html");
+            res.writeHead(200);
+            res.end(contents);
+        })
 });
 
-
-
-
-server.listen(8080);
