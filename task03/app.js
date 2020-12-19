@@ -1,12 +1,6 @@
-const express = require('express');
-const app = express();
-const path = require('path');
-const port = 3000;
-
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
-
-app.listen(port, () => console.log(`url-shortener listening on port ${port}!`));
-
-
+var http = require('http');
+http.createServer(function (req,res){
+    res.writeHead(200,{'Content-type' : 'text/html'});
+    res.write('index.html');
+    res.end();
+}).listen(8080);
