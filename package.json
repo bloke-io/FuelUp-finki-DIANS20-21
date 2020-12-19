@@ -1,8 +1,6 @@
-{
   "name": "FuelUp",
   "version": "1.0.0",
   "description": "",
-  "main" : "app.js"
   "scripts": {
     "start": "node task03/app.js",
   },
