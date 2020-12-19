@@ -2,7 +2,13 @@ let latitude, longitude, marker =[];
 
 //JQuery
 
+
 $(document).ready(function () {
+    $('.stars a').on('click', function(){
+        $('.stars span, .stars a').removeClass('active');
+        $(this).addClass('active');
+        $('.stars span').addClass('active');
+    });
     //=================== ALL FUEL STATIONS IN MACEDONIA ================================================
     $("#btn1").click(function () {
         deleteLayers();
@@ -14,7 +20,15 @@ $(document).ready(function () {
                     lat = ben.lat, diesel = ben.diesel,
                     lpg = ben.lpg, open = ben.opening_hours;
                     let LamMarker = L.marker([lat, lon]).addTo(map)
-                        .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg + '<br>' + 'Open: ' + open + '</label>');
+                        .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg + '<br>' + 'Open: ' + open + '<br>'+'<p class="stars">' +
+                    '<span>' +
+                    '<a class="star-1" href="#">1</a>' +
+                    '<a class="star-2" href="#">2</a>' +
+                    '<a class="star-3" href="#">3</a>' +
+                    '<a class="star-4" href="#">4</a>' +
+                    '<a class="star-5" href="#">5</a>' +
+                    '</span>'+
+                    '</p>'+ '</label>');
                     marker.push(LamMarker);
                 }
             });
@@ -44,8 +58,17 @@ $(document).ready(function () {
                     if (ben.name === "" || ben.name === "none") {}
                     else {
                         let LamMarker = L.marker([lat, lon]).addTo(map)
-                            .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg + '<br>' + 'Open: ' + open + '</label>');
+                            .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg + '<br>' + 'Open: ' + open + '<br>'+'<p class="stars">' +
+                            '<span>' +
+                                '<a class="star-1" href="#">1</a>' +
+                                '<a class="star-2" href="#">2</a>' +
+                                '<a class="star-3" href="#">3</a>' +
+                                '<a class="star-4" href="#">4</a>' +
+                                '<a class="star-5" href="#">5</a>' +
+                            '</span>'+
+                            '</p>'+'</label>');
                         marker.push(LamMarker);
+
                     }
                 }
             });
@@ -88,7 +111,15 @@ $(document).ready(function () {
                     if (ben.name === "" || ben.name === "none") {}
                     else if (ben.name === input) {
                         let LamMarker =  L.marker([lat, lon]).addTo(map)
-                            .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg + '<br>' + 'Open: ' + open + '</label>');
+                            .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg + '<br>' + 'Open: ' + open + '<br>'+'<p class="stars">' +
+                        '<span>' +
+                        '<a class="star-1" href="#">1</a>' +
+                        '<a class="star-2" href="#">2</a>' +
+                        '<a class="star-3" href="#">3</a>' +
+                        '<a class="star-4" href="#">4</a>' +
+                        '<a class="star-5" href="#">5</a>' +
+                        '</span>'+
+                        '</p>'+ '</label>');
                         // let LamMarker = L.marker([lat, lon])
                         //     .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg + '<br>' + 'Open: ' + open + '</label>')
                         //     .addTo(map);
@@ -196,7 +227,15 @@ function NearestCity(latitude, longitude) {
             }
         });
         let LamMarker = L.marker([closestLat, closestLon]).addTo(map)
-            .bindPopup('<label>'+'<h5>'+closestName+'</h5>'+'Disel: ' + closestDisel + '<br>' + 'LPG: ' + closestLPG + '<br>' + 'Open: ' + closestOpen + '</label>');
+            .bindPopup('<label>'+'<h5>'+closestName+'</h5>'+'Disel: ' + closestDisel + '<br>' + 'LPG: ' + closestLPG + '<br>' + 'Open: ' + closestOpen  + '<br>'+'<p class="stars">' +
+                '<span>' +
+                '<a class="star-1" href="#">1</a>' +
+                '<a class="star-2" href="#">2</a>' +
+                '<a class="star-3" href="#">3</a>' +
+                '<a class="star-4" href="#">4</a>' +
+                '<a class="star-5" href="#">5</a>' +
+                '</span>'+
+                '</p>'+ '</label>');
         marker.push(LamMarker);
         map.setView([latitude, longitude], 11);
     }).error(function () {
