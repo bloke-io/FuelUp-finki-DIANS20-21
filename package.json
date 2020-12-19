@@ -3,7 +3,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node task03/app.js"
   },
   "dependencies": {
     "ejs": "~1.0.0",
