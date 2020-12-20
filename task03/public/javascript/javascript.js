@@ -1,4 +1,5 @@
-let latitude, longitude, marker =[];
+let latitude = 0,longitude = 0, marker =[];
+var theMarker = {};
 //JQuery
 
 
@@ -102,7 +103,10 @@ $(document).ready(function () {
     //=================== NEAREST FUEL STATION ================================================
     $("#btn3").click(function () {
         deleteLayers();
-        OneNearst();
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(UserLocation);
+        }
+        else console.log("error");
     }).hover(function () {
         $(this).css({
             "color": "green",
@@ -163,11 +167,10 @@ $(document).ready(function () {
             navigator.geolocation.getCurrentPosition(function (position) {
                 latitude = position.coords.latitude;
                 longitude = position.coords.longitude;
-                let markers = [{
-                    "name": "Your Location",
-                    "lat": latitude,
-                    "lng": longitude
-                }];
+                if (theMarker != undefined) {
+                    map.removeLayer(theMarker);
+                }
+                let name = "Your Location", lon = longitude, lat = latitude;
                 let myIcon = L.icon({
                     iconUrl: 'images/pin48.png',
                     iconRetinaUrl: 'pin48.png',
@@ -175,11 +178,8 @@ $(document).ready(function () {
                     iconAnchor: [9, 21],
                     popupAnchor: [0, -14]
                 });
-                for (let i = 0; i < markers.length; ++i) {
-                    L.marker([markers[i].lat, markers[i].lng], {icon: myIcon})
-                        .bindPopup('<h3>' + markers[i].name + '</h3>').addTo(map)
-                        .openPopup();
-                }
+                theMarker = L.marker([lat, lon], {icon: myIcon}).addTo(map)
+                    .bindPopup('<label><h5>'+name+'</h5></label>').openPopup();
                 map.setView([latitude, longitude], 11);
             });
         } else {
@@ -195,6 +195,7 @@ function deleteLayers() {
     for (let i = 0; i < marker.length; i++) {
         map.removeLayer(marker[i]);
     }
+    marker.length = 0;
 }
 
 function getYourLocation() {
@@ -206,17 +207,9 @@ function getYourLocation() {
     }
 }
 
-// Get User's Coordinate from their Browser
-function OneNearst() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(UserLocation);
-    } else
-        console.log("error");
-}
-
 // Callback function for asynchronous call to HTML5 geolocation
 function UserLocation(position) {
-    NearestCity(position.coords.latitude, position.coords.longitude);
+    NearestFuel(position.coords.latitude, position.coords.longitude);
 }
 
 // Convert Degress to Radians
@@ -235,7 +228,7 @@ function PythagorasEquirectangular(lat1, lon1, lat2, lon2) {
     return Math.sqrt(x * x + y * y) * R;
 }
 
-function NearestCity(latitude, longitude) {
+function NearestFuel(latitude, longitude) {
     let minDif = 99999, closestLat, closestLon, closestName, closestDisel, closestLPG, closestOpen;
     $.getJSON('benzinski.txt', function (data) {
         $.each(data.benzinski, function (i, ben) {
@@ -275,3 +268,4 @@ function NearestCity(latitude, longitude) {
         console.log('Base not loaded');
     });
 }
+
