@@ -1,8 +1,4 @@
-
-
-
 let latitude, longitude, marker =[];
-
 //JQuery
 
 
@@ -117,7 +113,8 @@ $(document).ready(function () {
     });
     //=================== FIND THE NEAREST PETROL STATIONS BY NAME ================================================
     $(".btn-right").click(function () {
-        let input = $('#enterName').val();
+        let input = $('#enterName').val(), flag = false;
+        input= input[0].toUpperCase() + input.slice(1);
         deleteLayers();
         getYourLocation();
         $.getJSON('benzinski.txt', function (data) {
@@ -129,6 +126,7 @@ $(document).ready(function () {
                     && parseFloat(lat).toFixed(0) === parseFloat(latitude).toFixed(0)) {
                     if (ben.name === "" || ben.name === "none") {}
                     else if (ben.name === input) {
+                        flag = true;
                         let LamMarker =  L.marker([lat, lon]).addTo(map)
                             .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' +
                                 lpg + '<br>' + 'Open: ' + open + '<br>'+ 'Evaluate the service:'+ '<br>'+
@@ -151,7 +149,10 @@ $(document).ready(function () {
                     }
                 }
             });
-            map.setView([latitude, longitude], 9);
+            if (!flag){
+                alert("There is not fuel station with that name!")
+            }
+            else map.setView([latitude, longitude], 9);
         }).error(function () {
             console.log('Base not loaded');
         });

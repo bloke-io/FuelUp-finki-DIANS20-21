@@ -20,62 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e23ee6e-64af-4c96-bc0f-78c139533ef4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/task03.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FuelUpPrototype.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/benzinski.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/layers-2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/layers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/marker-icon-2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/marker-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/marker-shadow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/pin48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-bg_diagonals-thick_18_b81900_40x40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-bg_diagonals-thick_20_666666_40x40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-bg_flat_10_000000_40x100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-bg_glass_100_f6f6f6_1x400.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-bg_glass_100_fdf5ce_1x400.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-bg_glass_65_ffffff_1x400.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-bg_gloss-wave_35_f6a828_500x100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-bg_highlight-soft_75_ffe45c_1x100.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-icons_222222_256x240.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-icons_228ef1_256x240.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-icons_ef8c08_256x240.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-icons_ffd27a_256x240.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/images/ui-icons_ffffff_256x240.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery-1.11.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery-ui.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery-ui.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery-ui.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery-ui.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery-ui.structure.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery-ui.structure.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery-ui.theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery-ui.theme.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery.bgiframe-2.1.2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery.editinplace.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/jquery.slicknav.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/modernizr-2.7.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jquery/slicknav.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leaflet-src.esm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leaflet-src.esm.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leaflet-src.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leaflet-src.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leaflet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leaflet.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leaflet.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pages/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/pages/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +87,7 @@
       <workItem from="1608404847531" duration="211000" />
       <workItem from="1608407306370" duration="254000" />
       <workItem from="1608407931860" duration="434000" />
-      <workItem from="1608481065919" duration="7145000" />
+      <workItem from="1608481065919" duration="9898000" />
     </task>
     <servers />
   </component>
