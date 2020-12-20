@@ -20,10 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e23ee6e-64af-4c96-bc0f-78c139533ef4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../task02/FuelUpPrototype.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../task02/ReadMe.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript.js" beforeDir="false" afterPath="$PROJECT_DIR$/javascript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/names.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pin24.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,15 +50,18 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="javascript.nodejs.core.library.configured.version" value="14.15.0" />
-    <property name="javascript.nodejs.core.library.typings.version" value="14.14.14" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.15.3" />
+    <property name="javascript.nodejs.core.library.typings.version" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
     <configuration name="javascript.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="javascript.js" show_console_on_std_err="true" show_console_on_std_out="true" working-dir="$PROJECT_DIR$">
@@ -79,6 +84,7 @@
       <workItem from="1608404847531" duration="211000" />
       <workItem from="1608407306370" duration="254000" />
       <workItem from="1608407931860" duration="434000" />
+      <workItem from="1608481065919" duration="1469000" />
     </task>
     <servers />
   </component>
@@ -95,6 +101,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="429" y="238" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1608407546286">

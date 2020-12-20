@@ -20,15 +20,23 @@ $(document).ready(function () {
                     lat = ben.lat, diesel = ben.diesel,
                     lpg = ben.lpg, open = ben.opening_hours;
                     let LamMarker = L.marker([lat, lon]).addTo(map)
-                        .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg + '<br>' + 'Open: ' + open + '<br>'+'<p class="stars">' +
-                    '<span>' +
-                    '<a class="star-1" href="#">1</a>' +
-                    '<a class="star-2" href="#">2</a>' +
-                    '<a class="star-3" href="#">3</a>' +
-                    '<a class="star-4" href="#">4</a>' +
-                    '<a class="star-5" href="#">5</a>' +
-                    '</span>'+
-                    '</p>'+ '</label>');
+                        .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' +
+                            lpg + '<br>' + 'Open: ' + open + '<br>'+ 'Evaluate the service:'+ '<br>'+
+                        '<div class="stars">\n' +
+                            '    <form action="">\n' +
+                            '        <input class="star star-5" id="star-5" type="radio" name="star"/>\n' +
+                            '        <label class="star star-5" for="star-5"></label>\n' +
+                            '        <input class="star star-4" id="star-4" type="radio" name="star"/>\n' +
+                            '        <label class="star star-4" for="star-4"></label>\n' +
+                            '        <input class="star star-3" id="star-3" type="radio" name="star"/>\n' +
+                            '        <label class="star star-3" for="star-3"></label>\n' +
+                            '        <input class="star star-2" id="star-2" type="radio" name="star"/>\n' +
+                            '        <label class="star star-2" for="star-2"></label>\n' +
+                            '        <input class="star star-1" id="star-1" type="radio" name="star"/>\n' +
+                            '        <label class="star star-1" for="star-1"></label>\n' +
+                            '    </form>\n' +
+                            '</div>'
+                            + '</label>');
                     marker.push(LamMarker);
                 }
             });
@@ -58,15 +66,23 @@ $(document).ready(function () {
                     if (ben.name === "" || ben.name === "none") {}
                     else {
                         let LamMarker = L.marker([lat, lon]).addTo(map)
-                            .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg + '<br>' + 'Open: ' + open + '<br>'+'<p class="stars">' +
-                            '<span>' +
-                                '<a class="star-1" href="#">1</a>' +
-                                '<a class="star-2" href="#">2</a>' +
-                                '<a class="star-3" href="#">3</a>' +
-                                '<a class="star-4" href="#">4</a>' +
-                                '<a class="star-5" href="#">5</a>' +
-                            '</span>'+
-                            '</p>'+'</label>');
+                            .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg
+                                + '<br>' + 'Open: ' + open + '<br>'+ 'Evaluate the service:'+ '<br>'+
+                                '<div class="stars">\n' +
+                                '    <form action="">\n' +
+                                '        <input class="star star-5" id="star-5" type="radio" name="star"/>\n' +
+                                '        <label class="star star-5" for="star-5"></label>\n' +
+                                '        <input class="star star-4" id="star-4" type="radio" name="star"/>\n' +
+                                '        <label class="star star-4" for="star-4"></label>\n' +
+                                '        <input class="star star-3" id="star-3" type="radio" name="star"/>\n' +
+                                '        <label class="star star-3" for="star-3"></label>\n' +
+                                '        <input class="star star-2" id="star-2" type="radio" name="star"/>\n' +
+                                '        <label class="star star-2" for="star-2"></label>\n' +
+                                '        <input class="star star-1" id="star-1" type="radio" name="star"/>\n' +
+                                '        <label class="star star-1" for="star-1"></label>\n' +
+                                '    </form>\n' +
+                                '</div>'
+                                +'</label>');
                         marker.push(LamMarker);
 
                     }
@@ -111,18 +127,23 @@ $(document).ready(function () {
                     if (ben.name === "" || ben.name === "none") {}
                     else if (ben.name === input) {
                         let LamMarker =  L.marker([lat, lon]).addTo(map)
-                            .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg + '<br>' + 'Open: ' + open + '<br>'+'<p class="stars">' +
-                        '<span>' +
-                        '<a class="star-1" href="#">1</a>' +
-                        '<a class="star-2" href="#">2</a>' +
-                        '<a class="star-3" href="#">3</a>' +
-                        '<a class="star-4" href="#">4</a>' +
-                        '<a class="star-5" href="#">5</a>' +
-                        '</span>'+
-                        '</p>'+ '</label>');
-                        // let LamMarker = L.marker([lat, lon])
-                        //     .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg + '<br>' + 'Open: ' + open + '</label>')
-                        //     .addTo(map);
+                            .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' +
+                                lpg + '<br>' + 'Open: ' + open + '<br>'+ 'Evaluate the service:'+ '<br>'+
+                                '<div class="stars">\n' +
+                                '    <form action="">\n' +
+                                '        <input class="star star-5" id="star-5" type="radio" name="star"/>\n' +
+                                '        <label class="star star-5" for="star-5"></label>\n' +
+                                '        <input class="star star-4" id="star-4" type="radio" name="star"/>\n' +
+                                '        <label class="star star-4" for="star-4"></label>\n' +
+                                '        <input class="star star-3" id="star-3" type="radio" name="star"/>\n' +
+                                '        <label class="star star-3" for="star-3"></label>\n' +
+                                '        <input class="star star-2" id="star-2" type="radio" name="star"/>\n' +
+                                '        <label class="star star-2" for="star-2"></label>\n' +
+                                '        <input class="star star-1" id="star-1" type="radio" name="star"/>\n' +
+                                '        <label class="star star-1" for="star-1"></label>\n' +
+                                '    </form>\n' +
+                                '</div>'
+                                + '</label>');
                         marker.push(LamMarker);
                     }
                 }
@@ -227,15 +248,23 @@ function NearestCity(latitude, longitude) {
             }
         });
         let LamMarker = L.marker([closestLat, closestLon]).addTo(map)
-            .bindPopup('<label>'+'<h5>'+closestName+'</h5>'+'Disel: ' + closestDisel + '<br>' + 'LPG: ' + closestLPG + '<br>' + 'Open: ' + closestOpen  + '<br>'+'<p class="stars">' +
-                '<span>' +
-                '<a class="star-1" href="#">1</a>' +
-                '<a class="star-2" href="#">2</a>' +
-                '<a class="star-3" href="#">3</a>' +
-                '<a class="star-4" href="#">4</a>' +
-                '<a class="star-5" href="#">5</a>' +
-                '</span>'+
-                '</p>'+ '</label>');
+            .bindPopup('<label>'+'<h5>'+closestName+'</h5>'+'Disel: ' + closestDisel + '<br>' + 'LPG: ' + closestLPG + '<br>'
+                + 'Open: ' + closestOpen  + '<br>'+ 'Evaluate the service:'+ '<br>'+
+                '<div class="stars">\n' +
+                '    <form action="">\n' +
+                '        <input class="star star-5" id="star-5" type="radio" name="star"/>\n' +
+                '        <label class="star star-5" for="star-5"></label>\n' +
+                '        <input class="star star-4" id="star-4" type="radio" name="star"/>\n' +
+                '        <label class="star star-4" for="star-4"></label>\n' +
+                '        <input class="star star-3" id="star-3" type="radio" name="star"/>\n' +
+                '        <label class="star star-3" for="star-3"></label>\n' +
+                '        <input class="star star-2" id="star-2" type="radio" name="star"/>\n' +
+                '        <label class="star star-2" for="star-2"></label>\n' +
+                '        <input class="star star-1" id="star-1" type="radio" name="star"/>\n' +
+                '        <label class="star star-1" for="star-1"></label>\n' +
+                '    </form>\n' +
+                '</div>'
+                + '</label>');
         marker.push(LamMarker);
         map.setView([latitude, longitude], 11);
     }).error(function () {
