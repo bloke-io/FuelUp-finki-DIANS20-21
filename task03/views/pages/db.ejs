@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+
+<div class="container">
+<h2>Database Results</h2>
+
+<ul>
+    <% results.forEach(function(r) { %>
+        <li><%= r.id %> - <%= r.name %></li>
+    <% }); %>
+</ul>
+
+</div>
+
+</body>
+<script>
+    const map = L.map('map', {
+        center: [41.6086, 21.7453],
+        minZoom: 2,
+        zoom: 8
+    });
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+</script>
+</html>

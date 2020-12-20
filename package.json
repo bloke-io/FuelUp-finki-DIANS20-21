@@ -1,9 +1,31 @@
-{  
-  "name": "FuelUp",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "start": "node task03/app.js",
+{
+  "name": "node-js-getting-started",
+  "version": "0.3.0",
+  "description": "A sample Node.js app using Express 4",
+  "engines": {
+    "node": "12.x"
   },
-  "license": "ISC"
+  "main": "index.js",
+  "scripts": {
+    "start": "node task03/index.js",
+    "test": "node task03/test.js"
+  },
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "got": "^11.3.0",
+    "tape": "^4.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heroku/node-js-getting-started"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
 }
