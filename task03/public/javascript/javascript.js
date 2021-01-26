@@ -299,6 +299,7 @@ function NearestFuel(latitude, longitude) {
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
+        alert( "Geolocation is not supported by this browser.");
     } else {
         alert( "Geolocation is not supported by this browser.");
     }

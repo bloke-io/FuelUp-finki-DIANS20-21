@@ -275,7 +275,10 @@ label.star:before {
         padding: 0;
         margin: 0;
     }
-    header h1, h2{
+    header h1{
+        font-size: 220%;
+    }
+    header h2{
         font-size: 100%;
     }
     nav{
@@ -283,7 +286,7 @@ label.star:before {
         width: 100%;
     }
     .navigation{
-        padding:0 ;
+        padding: 10px;
     }
     nav ul li{
         padding: 2px 5px 2px 5px;
@@ -296,36 +299,34 @@ label.star:before {
         object-fit: contain;
     }
     .btn{
-        width: 10px;
-        padding: 0;
-        margin: 0;
+        width: 25px;
     }
     .search h3{
-        font-size: 50%;
+        font-size: 100%;
     }
     .search-form{
         padding: 0;
         margin: 0;
     }
     .search{
-        padding: 10px 5px;
+        padding: 10px 15px;
     }
     .search input{
-        width: 70px;
-        height: 14px;
+        width: 100px;
+        height: 35px;
     }
     .search .btn{
-        font-size: 50%;
-        padding: 0px;
+        font-size: 100%;
+        padding: 1px;
         margin: 1px;
-        height: 14px;
+        height: 35px;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
     }
     .search input::placeholder{
-        font-size: 6px;
+        font-size: 10px;
         text-align: center;
     }
     .search-form div{
@@ -335,7 +336,7 @@ label.star:before {
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        height:200px;
+        height:400px;
     }
     .icon-inner, .ionicon, svg {
          display: inline-block;
@@ -343,18 +344,19 @@ label.star:before {
         width: 50%;
     }
     footer{
-        padding: 5px 2px;
+        padding: 30px 0px;
     }
     .social-links{
         margin-top: 1px;
+        font-size: 100%;
     }
     footer h4{
-        font-size: 50%;
+        font-size: 150%;
     }
     .footer-link{
-        padding: 1px;
+        padding: 4px;
         margin: 0;
-        font-size: 50%;
+        font-size: 100%;
     }
     #popUpMarker{
         font-size: 5px;
@@ -363,69 +365,10 @@ label.star:before {
         padding: 6px;
         font-size: 10px;
     }
-    #map > div.leaflet-map-pane > div.leaflet-objects-pane > div.leaflet-marker-pane > img:nth-child(29)
+    .container {
+        width: 90%;
+    }
+    .container span{
+        margin-left: 3px;
+    }
 }
-/*#@media screen and (max-width: 1200px) {
-  html {
-    font-size: 50%;
-  }
-  nav #logo {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-  }
-  nav ul li {
-    margin-left: 5rem;
-  }
-  .showcase {
-    -ms-grid-columns: 10% 1fr 10%;
-        grid-template-columns: 10% 1fr 10%;
-  }
-  .showcase img {
-    width: 100%;
-    -o-object-fit: contain;
-       object-fit: contain;
-  }
-  .showcase img,
-  .showcase h2,
-  .showcase .info {
-    -ms-grid-column: 2;
-    -ms-grid-column-span: 1;
-    grid-column: 2/3;
-    text-align: center;
-  }
-  .features {
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-  }
-  .features h2 {
-    margin-top: 5rem;
-  }
-  .features .cards {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    width: 100%;
-  }
-  .features .cards .card {
-    margin: 5rem 0rem;
-  }
-  .soon {
-    overflow: hidden;
-  }
-  .soon img {
-    width: 60%;
-  }
-  .soon h2 {
-    font-size: 5rem;
-    text-align: center;
-  }
-  footer h1 {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-  }
-}
- */
