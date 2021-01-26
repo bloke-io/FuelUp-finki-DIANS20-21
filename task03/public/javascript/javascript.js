@@ -174,31 +174,41 @@ $(document).ready(function () {
         }
     }
 
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
     //=================== FIND YOUR LOCATION ================================================
     $(".btn-location").click(function () {
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
-                if (theMarker != undefined) {
-                    map.removeLayer(theMarker);
-                }
-                let name = "Your Location", lon = longitude, lat = latitude;
-                let myIcon = L.icon({
-                    iconUrl: 'images/pin48.png',
-                    iconRetinaUrl: 'pin48.png',
-                    iconSize: [40, 40],
-                    iconAnchor: [9, 21],
-                    popupAnchor: [0, -14]
-                });
-                theMarker = L.marker([lat, lon], {icon: myIcon}).addTo(map)
-                    .bindPopup('<label><h5>' + name + '</h5></label>').openPopup();
-                map.setView([latitude, longitude], 11);
-            });
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
         } else {
-            console.log("Browser doesn't support geolocation!");
+            x.innerHTML = "Geolocation is not supported by this browser.";
         }
     });
+
+    function showPosition(position) {
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        if (theMarker != undefined) {
+            map.removeLayer(theMarker);
+        }
+        let name = "Your Location", lon = longitude, lat = latitude;
+        let myIcon = L.icon({
+            iconUrl: 'images/pin48.png',
+            iconRetinaUrl: 'pin48.png',
+            iconSize: [40, 40],
+            iconAnchor: [9, 21],
+            popupAnchor: [0, -14]
+        });
+        theMarker = L.marker([lat, lon], {icon: myIcon}).addTo(map)
+            .bindPopup('<label><h5>' + name + '</h5></label>').openPopup();
+        map.setView([position.coords.latitude, position.coords.longitude], 11);
+    }
 });
 
 
@@ -263,7 +273,7 @@ function NearestFuel(latitude, longitude) {
         });
         let LamMarker = L.marker([closestLat, closestLon]).addTo(map)
             .bindPopup('<div  id="popUpMarker"><h5>' + closestName + '</h5><br>'
-                + '<ul><li>Disel: ' + closestDisel.toUpperCase()+ '</li><li>LPG: ' + closestLPG.toUpperCase() + '<li>'
+                + '<ul><li>Disel: ' + closestDisel.toUpperCase() + '</li><li>LPG: ' + closestLPG.toUpperCase() + '<li>'
                 + 'Open: ' + closestOpen + '<t></ul>' + 'Evaluate the service:' + '<br>' +
                 '<div class="stars">\n' +
                 '    <form action="">\n' +
