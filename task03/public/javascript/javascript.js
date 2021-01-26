@@ -192,12 +192,10 @@ $(document).ready(function () {
     });
 
     function showPosition(position) {
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
         if (theMarker != undefined) {
             map.removeLayer(theMarker);
         }
-        let name = "Your Location", lon = longitude, lat = latitude;
+        let name = "Your Location";
         let myIcon = L.icon({
             iconUrl: 'images/pin48.png',
             iconRetinaUrl: 'pin48.png',
@@ -205,7 +203,7 @@ $(document).ready(function () {
             iconAnchor: [9, 21],
             popupAnchor: [0, -14]
         });
-        theMarker = L.marker([lat, lon], {icon: myIcon}).addTo(map)
+        theMarker = L.marker([position.coords.latitude, position.coords.longitude], {icon: myIcon}).addTo(map)
             .bindPopup('<label><h5>' + name + '</h5></label>').openPopup();
         map.setView([position.coords.latitude, position.coords.longitude], 11);
     }
