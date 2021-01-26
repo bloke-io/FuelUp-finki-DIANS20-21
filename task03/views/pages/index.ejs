@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <header>
-        <h1 onclick="location.href=location.reload();" style="cursor: pointer; ">Fuel<span>UP</span></h1>
+        <h1 onclick="location.reload();" style="cursor: pointer; ">Fuel<span>UP</span></h1>
         <h2>Find Your Nearest Petrol Station</h2>
     </header>
     <nav class="navigation">
@@ -38,7 +38,7 @@
     <section class="search">
         <h3>Find the nearest petrol stations by name</h3>
         <div class="search-form">
-            <input placeholder="Enter Name" id="enterName" />
+            <input placeholder="Fuel Station Name" id="enterName" />
             <div class="btn">
                 <a href="#">
                     <ion-icon name="chevron-forward" class="btn-right"></ion-icon>
@@ -46,13 +46,13 @@
             </div>
             <div class="btn">
                 <a href="#">
-                    <ion-icon name="location" class="btn-location"></ion-icon>
+                    <ion-icon name="location" class="btn-location" onclick="getLocation()"></ion-icon>
                 </a>
             </div>
         </div>
     </section>
     <div class="iframe-map">
-        <div id="map" style="height: 440px; border: 1px solid #AAA;"></div>
+        <div id="map"></div>
     </div>
     <footer>
         <h4>Contact Us</h4>

@@ -183,13 +183,13 @@ $(document).ready(function () {
     }
 
     //=================== FIND YOUR LOCATION ================================================
-    $(".btn-location").click(function () {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-    });
+    // $(".btn-location").click(function () {
+    //     // if (navigator.geolocation) {
+    //     //     navigator.geolocation.getCurrentPosition(showPosition);
+    //     // } else {
+    //     //     x.innerHTML = "Geolocation is not supported by this browser.";
+    //     // }
+    // });
 
     function showPosition(position) {
         if (theMarker != undefined) {
@@ -237,6 +237,8 @@ function UserLocation(position) {
 function Deg2Rad(deg) {
     return deg * Math.PI / 180;
 }
+
+
 
 function PythagorasEquirectangular(lat1, lon1, lat2, lon2) {
     lat1 = Deg2Rad(lat1);
@@ -294,3 +296,14 @@ function NearestFuel(latitude, longitude) {
     });
 }
 
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        alert( "Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    alert( "Latitude: " + position.coords.latitude +"<br>Longitude: " + position.coords.longitude);
+}
