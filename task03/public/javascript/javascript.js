@@ -1,10 +1,10 @@
-let latitude = 0,longitude = 0, marker =[];
+let latitude = 0, longitude = 0, marker = [];
 var theMarker = {};
 //JQuery
 
 
 $(document).ready(function () {
-    $('.stars a').on('click', function(){
+    $('.stars a').on('click', function () {
         $('.stars span, .stars a').removeClass('active');
         $(this).addClass('active');
         $('.stars span').addClass('active');
@@ -14,17 +14,18 @@ $(document).ready(function () {
         deleteLayers();
         $.getJSON('benzinski.txt', function (data) {
             $.each(data.benzinski, function (i, ben) {
-                if (ben.name === "" || ben.name === "none") {}
-                else{
+                if (ben.name === "" || ben.name === "none") {
+                } else {
                     let name = ben.name, lon = ben.lon,
-                    lat = ben.lat, diesel = ben.diesel,
-                    lpg = ben.lpg, open = ben.opening_hours;
+                        lat = ben.lat, diesel = ben.diesel,
+                        lpg = ben.lpg, open = ben.opening_hours;
                     let LamMarker = L.marker([lat, lon]).addTo(map)
-                        .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' +
-                            lpg + '<br>' + 'Open: ' + open + '<br>'+ 'Evaluate the service:'+ '<br>'+
-                        '<div class="stars">\n' +
+                        .bindPopup('<div  id="popUpMarker"><h5>' + name + '</h5><br>'
+                            + '<ul><li>Disel: ' + diesel.toUpperCase() + '</li><li>LPG: ' + lpg.toUpperCase() + '<li>'
+                            + 'Open: ' + open + '<t></ul>' + 'Evaluate the service:' + '<br>' +
+                            '<div class="stars">\n' +
                             '    <form action="">\n' +
-                            '        <input class="star star-5" id="star-5" type="radio" name="star"/>\n' +
+                            '        <input class="star star-5" id="star-5" type="radio" name="star"/>' +
                             '        <label class="star star-5" for="star-5"></label>\n' +
                             '        <input class="star star-4" id="star-4" type="radio" name="star"/>\n' +
                             '        <label class="star star-4" for="star-4"></label>\n' +
@@ -34,9 +35,8 @@ $(document).ready(function () {
                             '        <label class="star star-2" for="star-2"></label>\n' +
                             '        <input class="star star-1" id="star-1" type="radio" name="star"/>\n' +
                             '        <label class="star star-1" for="star-1"></label>\n' +
-                            '    </form>\n' +
-                            '</div>'
-                            + '</label>');
+                            '</form></div>' +
+                            '<input type="text" id="comment" placeholder="Comment for service"></div>');
                     marker.push(LamMarker);
                 }
             });
@@ -59,18 +59,18 @@ $(document).ready(function () {
         $.getJSON('benzinski.txt', function (data) {
             $.each(data.benzinski, function (i, ben) {
                 let name = ben.name, lon = ben.lon,
-                lat = ben.lat, diesel = ben.diesel,
-                lpg = ben.lpg, open = ben.opening_hours;
+                    lat = ben.lat, diesel = ben.diesel,
+                    lpg = ben.lpg, open = ben.opening_hours;
                 if (parseFloat(lon).toFixed(0) === parseFloat(longitude).toFixed(0)
                     && parseFloat(lat).toFixed(0) === parseFloat(latitude).toFixed(0)) {
-                    if (ben.name === "" || ben.name === "none") {}
-                    else {
+                    if (ben.name !== "" && ben.name !== "none") {
                         let LamMarker = L.marker([lat, lon]).addTo(map)
-                            .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' + lpg
-                                + '<br>' + 'Open: ' + open + '<br>'+ 'Evaluate the service:'+ '<br>'+
+                            .bindPopup('<div  id="popUpMarker"><h5>' + name + '</h5><br>'
+                                + '<ul><li>Disel: ' + diesel.toUpperCase() + '</li><li>LPG: ' + lpg.toUpperCase() + '<li>'
+                                + 'Open: ' + open + '<t></ul>' + 'Evaluate the service:' + '<br>' +
                                 '<div class="stars">\n' +
                                 '    <form action="">\n' +
-                                '        <input class="star star-5" id="star-5" type="radio" name="star"/>\n' +
+                                '        <input class="star star-5" id="star-5" type="radio" name="star"/>' +
                                 '        <label class="star star-5" for="star-5"></label>\n' +
                                 '        <input class="star star-4" id="star-4" type="radio" name="star"/>\n' +
                                 '        <label class="star star-4" for="star-4"></label>\n' +
@@ -80,9 +80,8 @@ $(document).ready(function () {
                                 '        <label class="star star-2" for="star-2"></label>\n' +
                                 '        <input class="star star-1" id="star-1" type="radio" name="star"/>\n' +
                                 '        <label class="star star-1" for="star-1"></label>\n' +
-                                '    </form>\n' +
-                                '</div>'
-                                +'</label>');
+                                '</form></div>' +
+                                '<input type="text" id="comment" placeholder="Comment for service"></div>');
                         marker.push(LamMarker);
 
                     }
@@ -105,8 +104,7 @@ $(document).ready(function () {
         deleteLayers();
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(UserLocation);
-        }
-        else console.log("error");
+        } else console.log("error");
     }).hover(function () {
         $(this).css({
             "color": "green",
@@ -117,8 +115,18 @@ $(document).ready(function () {
     });
     //=================== FIND THE NEAREST PETROL STATIONS BY NAME ================================================
     $(".btn-right").click(function () {
+        StationsByName();
+    });
+    $("#enterName").on('keyup', function (e) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+            StationsByName();
+        }
+    });
+
+    //STATIONS BY NAME
+    function StationsByName() {
         let input = $('#enterName').val(), flag = false;
-        input= input[0].toUpperCase() + input.slice(1);
+        input = input[0].toUpperCase() + input.slice(1);
         deleteLayers();
         getYourLocation();
         $.getJSON('benzinski.txt', function (data) {
@@ -128,15 +136,15 @@ $(document).ready(function () {
                     lpg = ben.lpg, open = ben.opening_hours;
                 if (parseFloat(lon).toFixed(0) === parseFloat(longitude).toFixed(0)
                     && parseFloat(lat).toFixed(0) === parseFloat(latitude).toFixed(0)) {
-                    if (ben.name === "" || ben.name === "none") {}
-                    else if (ben.name === input) {
+                    if (ben.name === input) {
                         flag = true;
-                        let LamMarker =  L.marker([lat, lon]).addTo(map)
-                            .bindPopup('<label>'+'<h5>'+name+'</h5>' + 'Disel: ' + diesel + '<br>' + 'LPG: ' +
-                                lpg + '<br>' + 'Open: ' + open + '<br>'+ 'Evaluate the service:'+ '<br>'+
+                        let LamMarker = L.marker([lat, lon]).addTo(map)
+                            .bindPopup('<div  id="popUpMarker"><h5>' + name + '</h5><br>'
+                                + '<ul><li>Disel: ' + diesel.toUpperCase() + '</li><li>LPG: ' + lpg.toUpperCase() + '<li>'
+                                + 'Open: ' + open + '<t></ul>' + 'Evaluate the service:' + '<br>' +
                                 '<div class="stars">\n' +
                                 '    <form action="">\n' +
-                                '        <input class="star star-5" id="star-5" type="radio" name="star"/>\n' +
+                                '        <input class="star star-5" id="star-5" type="radio" name="star"/>' +
                                 '        <label class="star star-5" for="star-5"></label>\n' +
                                 '        <input class="star star-4" id="star-4" type="radio" name="star"/>\n' +
                                 '        <label class="star star-4" for="star-4"></label>\n' +
@@ -146,21 +154,26 @@ $(document).ready(function () {
                                 '        <label class="star star-2" for="star-2"></label>\n' +
                                 '        <input class="star star-1" id="star-1" type="radio" name="star"/>\n' +
                                 '        <label class="star star-1" for="star-1"></label>\n' +
-                                '    </form>\n' +
-                                '</div>'
-                                + '</label>');
+                                '</form></div>' +
+                                '<input type="text"  placeholder="Comment for service"></div>');
                         marker.push(LamMarker);
                     }
                 }
             });
-            if (!flag){
+            if (!flag) {
                 alert("There is not fuel station with that name!")
-            }
-            else map.setView([latitude, longitude], 9);
+            } else map.setView([latitude, longitude], 9);
         }).error(function () {
             console.log('Base not loaded');
         });
-    });
+    }
+
+    function commentService(e) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+            console.log('fleze')
+        }
+    }
+
     //=================== FIND YOUR LOCATION ================================================
     $(".btn-location").click(function () {
         if ("geolocation" in navigator) {
@@ -179,7 +192,7 @@ $(document).ready(function () {
                     popupAnchor: [0, -14]
                 });
                 theMarker = L.marker([lat, lon], {icon: myIcon}).addTo(map)
-                    .bindPopup('<label><h5>'+name+'</h5></label>').openPopup();
+                    .bindPopup('<label><h5>' + name + '</h5></label>').openPopup();
                 map.setView([latitude, longitude], 11);
             });
         } else {
@@ -234,22 +247,27 @@ function NearestFuel(latitude, longitude) {
         $.each(data.benzinski, function (i, ben) {
             let name = ben.name, lon = ben.lon, lat = ben.lat, diesel = ben.diesel,
                 lpg = ben.lpg, open = ben.opening_hours;
-            if (ben.name === "" || ben.name === "none") {}
-            else {
+            if (ben.name === "" || ben.name === "none") {
+            } else {
                 let dif = PythagorasEquirectangular(latitude, longitude, lat, lon);
                 if (dif < minDif) {
-                    closestLat = lat; closestLon = lon;
-                    closestName = name; closestDisel = diesel;
-                    closestLPG = lpg; closestOpen = open; minDif = dif;
+                    closestLat = lat;
+                    closestLon = lon;
+                    closestName = name;
+                    closestDisel = diesel;
+                    closestLPG = lpg;
+                    closestOpen = open;
+                    minDif = dif;
                 }
             }
         });
         let LamMarker = L.marker([closestLat, closestLon]).addTo(map)
-            .bindPopup('<label>'+'<h5>'+closestName+'</h5>'+'Disel: ' + closestDisel + '<br>' + 'LPG: ' + closestLPG + '<br>'
-                + 'Open: ' + closestOpen  + '<br>'+ 'Evaluate the service:'+ '<br>'+
+            .bindPopup('<div  id="popUpMarker"><h5>' + closestName + '</h5><br>'
+                + '<ul><li>Disel: ' + closestDisel.toUpperCase()+ '</li><li>LPG: ' + closestLPG.toUpperCase() + '<li>'
+                + 'Open: ' + closestOpen + '<t></ul>' + 'Evaluate the service:' + '<br>' +
                 '<div class="stars">\n' +
                 '    <form action="">\n' +
-                '        <input class="star star-5" id="star-5" type="radio" name="star"/>\n' +
+                '        <input class="star star-5" id="star-5" type="radio" name="star"/>' +
                 '        <label class="star star-5" for="star-5"></label>\n' +
                 '        <input class="star star-4" id="star-4" type="radio" name="star"/>\n' +
                 '        <label class="star star-4" for="star-4"></label>\n' +
@@ -259,9 +277,8 @@ function NearestFuel(latitude, longitude) {
                 '        <label class="star star-2" for="star-2"></label>\n' +
                 '        <input class="star star-1" id="star-1" type="radio" name="star"/>\n' +
                 '        <label class="star star-1" for="star-1"></label>\n' +
-                '    </form>\n' +
-                '</div>'
-                + '</label>');
+                '</form></div>' +
+                '<input type="text" id="comment" placeholder="Comment for service"></div>');
         marker.push(LamMarker);
         map.setView([latitude, longitude], 11);
     }).error(function () {

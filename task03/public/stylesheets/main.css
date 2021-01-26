@@ -1,6 +1,12 @@
+html {
+    font-size: 62.5%;
+}
+
 * {
     margin: 0;
     padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
@@ -121,6 +127,10 @@ ul li:last-child{
     padding: 0 20px;
 }
 
+#map{
+    height: 440px;
+    border: 1px solid #AAA;
+}
 
 h3 {
     color: #556052;
@@ -204,19 +214,12 @@ footer {
     margin-top: -10px;
     display: none;
 }
-
-h5 {
-    font-size: 16px;
-    color: #556052;
-    margin-left: 20px;
-    margin-bottom: 10px;
-}
 label h5{
     margin: 0;
 }
 
 div.stars {
-    width: 200px;
+    width: auto;
     display: inline-block;
 }
 
@@ -249,3 +252,180 @@ label.star:before {
     content: '\f006';
     font-family: FontAwesome;
 }
+
+#popUpMarker{
+    display: inline-block;
+    text-align: center;
+}
+#popUpMarker h5{
+    font-size: 16px;
+    color: #556052;
+}
+#popUpMarker li{
+    margin: 0 2px 2px 0;
+    padding: 2px;
+    border: black solid 2px;
+}
+#comment::placeholder{
+    font-size: 15px;
+}
+
+@media screen and (max-width: 1200px) {
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    header h1, h2{
+        font-size: 100%;
+    }
+    nav{
+        font-size: 50%;
+        width: 100%;
+    }
+    .navigation{
+        padding:0 ;
+    }
+    nav ul li{
+        padding: 2px 5px 2px 5px;
+        margin: 0 2px 0 2px;
+        font-size: 40%;
+    }
+    nav img, footer img, .search-form img{
+        width: 100%;
+        -o-object-fit: contain;
+        object-fit: contain;
+    }
+    .btn{
+        width: 10px;
+        padding: 0;
+        margin: 0;
+    }
+    .search h3{
+        font-size: 50%;
+    }
+    .search-form{
+        padding: 0;
+        margin: 0;
+    }
+    .search{
+        padding: 10px 5px;
+    }
+    .search input{
+        width: 70px;
+        height: 14px;
+    }
+    .search .btn{
+        font-size: 50%;
+        padding: 0px;
+        margin: 1px;
+        height: 14px;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    .search input::placeholder{
+        font-size: 6px;
+        text-align: center;
+    }
+    .search-form div{
+        display: inline-block;
+    }
+    #map{
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        height:200px;
+    }
+    .icon-inner, .ionicon, svg {
+         display: inline-block;
+        height: 50%;
+        width: 50%;
+    }
+    footer{
+        padding: 5px 2px;
+    }
+    .social-links{
+        margin-top: 1px;
+    }
+    footer h4{
+        font-size: 50%;
+    }
+    .footer-link{
+        padding: 1px;
+        margin: 0;
+        font-size: 50%;
+    }
+    #popUpMarker{
+        font-size: 5px;
+    }
+    label.star {
+        padding: 6px;
+        font-size: 10px;
+    }
+    #map > div.leaflet-map-pane > div.leaflet-objects-pane > div.leaflet-marker-pane > img:nth-child(29)
+}
+/*#@media screen and (max-width: 1200px) {
+  html {
+    font-size: 50%;
+  }
+  nav #logo {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+  nav ul li {
+    margin-left: 5rem;
+  }
+  .showcase {
+    -ms-grid-columns: 10% 1fr 10%;
+        grid-template-columns: 10% 1fr 10%;
+  }
+  .showcase img {
+    width: 100%;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  .showcase img,
+  .showcase h2,
+  .showcase .info {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-column: 2/3;
+    text-align: center;
+  }
+  .features {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .features h2 {
+    margin-top: 5rem;
+  }
+  .features .cards {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+  }
+  .features .cards .card {
+    margin: 5rem 0rem;
+  }
+  .soon {
+    overflow: hidden;
+  }
+  .soon img {
+    width: 60%;
+  }
+  .soon h2 {
+    font-size: 5rem;
+    text-align: center;
+  }
+  footer h1 {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+}
+ */
