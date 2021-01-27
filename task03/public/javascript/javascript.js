@@ -122,7 +122,6 @@ $(document).ready(function () {
             StationsByName();
         }
     });
-
     //STATIONS BY NAME
     function StationsByName() {
         let input = $('#enterName').val(), flag = false;
@@ -155,8 +154,9 @@ $(document).ready(function () {
                                 '        <input class="star star-1" id="star-1" type="radio" name="star"/>\n' +
                                 '        <label class="star star-1" for="star-1"></label>\n' +
                                 '</form></div>' +
-                                '<input type="text"  placeholder="Comment for service"></div>');
+                                '<input type="text" id="myInput" placeholder="Comment for service"></div>');
                         marker.push(LamMarker);
+
                     }
                 }
             });
@@ -167,29 +167,14 @@ $(document).ready(function () {
             console.log('Base not loaded');
         });
     }
-
-    function commentService(e) {
-        if (e.key === 'Enter' || e.keyCode === 13) {
-            console.log('fleze')
-        }
-    }
-
-    function getLocation() {
+    //=================== FIND YOUR LOCATION ================================================
+    $(".btn-location").click(function () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
-    }
-
-    //=================== FIND YOUR LOCATION ================================================
-    // $(".btn-location").click(function () {
-    //     // if (navigator.geolocation) {
-    //     //     navigator.geolocation.getCurrentPosition(showPosition);
-    //     // } else {
-    //     //     x.innerHTML = "Geolocation is not supported by this browser.";
-    //     // }
-    // });
+    });
 
     function showPosition(position) {
         if (theMarker != undefined) {
@@ -296,14 +281,5 @@ function NearestFuel(latitude, longitude) {
     });
 }
 
-function getLocation() {
-    navigator.geolocation.getCurrentPosition(success => {
-        alert('Ja zede be');
-    }, failure => {
-        if (failure.message.startsWith("Only secure origins are allowed")) {
-            alert('nema air od ova');
-        }
-    });
-}
 
 
