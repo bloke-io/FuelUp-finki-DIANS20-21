@@ -9,24 +9,27 @@ function deleteLayers() {
     marker.length = 0;
 }
 
-function Deg2Rad(deg) {
-    return deg * Math.PI / 180;
+function arePointsNear(melat, melon, fuellat, fuellon, km) {
+    var ky = 40000 / 360;
+    var kx = Math.cos(Math.PI * melat / 180.0) * ky;
+    var dx = Math.abs(melon - fuellon) * kx;
+    var dy = Math.abs(melat - fuellat) * ky;
+    return Math.sqrt(dx * dx + dy * dy) <= km;
 }
 
-function PythagorasEquirectangular(lat1, lon1, lat2, lon2) {
-    lat1 = Deg2Rad(lat1);
-    lat2 = Deg2Rad(lat2);
-    lon1 = Deg2Rad(lon1);
-    lon2 = Deg2Rad(lon2);
-    let R = 6371; // km
-    let x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
-    let y = (lat2 - lat1);
-    return Math.sqrt(x * x + y * y) * R;
+function distance(lat1, lon1, lat2, lon2) {
+    var p = 0.017453292519943295;    // Math.PI / 180
+    var c = Math.cos;
+    var a = 0.5 - c((lat2 - lat1) * p)/2 +
+        c(lat1 * p) * c(lat2 * p) *
+        (1 - c((lon2 - lon1) * p))/2;
+    return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
 }
 
 class FuelsStation {
     getFuels(button) {
         let minDif = 99999, closestLat, closestLon, closestName, closestDisel, closestLPG, closestOpen,flag, input;
+        let fuels= [], range = [];
         if (button === 'btn4' || button === 'enterName') {
             input = $('#enterName').val(); flag = false;
             input = input[0].toUpperCase() + input.slice(1);
@@ -37,15 +40,20 @@ class FuelsStation {
                     lat = ben.lat, diesel = ben.diesel,
                     lpg = ben.lpg, open = ben.opening_hours;
                 if (ben.name !== "" && ben.name !== "none") {
-                    if (button === 'btn1') {
+                    if (button === 'btn1') {                                //get all fuels station in macedonia
                         PutMarker(lat, lon, name, diesel, lpg, open);
                         map.setView([41.6086, 21.7453], 8);
-                    } else if (button === 'btn2' && parseFloat(lon).toFixed(0) === parseFloat(longitude).toFixed(0)
-                        && parseFloat(lat).toFixed(0) === parseFloat(latitude).toFixed(0)) {
-                        PutMarker(lat, lon, name, diesel, lpg, open);
-                        map.setView([latitude, longitude], 9);
-                    } else if (button === 'btn3') {
-                        let dif = PythagorasEquirectangular(latitude, longitude, lat, lon);
+                    } else if (button === 'btn2') {
+                        let area = arePointsNear(latitude, longitude, lat, lon, 40);
+                        if (area) {
+                            let station = lat + '/' + lon + '/' + name + '/' + diesel + '/' + lpg + '/' + open;
+                            let rangeFuel = distance(latitude, longitude, lat, lon);
+                            let fuelInfo = {rangeFuel, station}
+                            fuels.push(fuelInfo);
+                            range.push(distance(latitude, longitude, lat, lon));
+                        }
+                    } else if (button === 'btn3') {                         //get nearest fuel station
+                        let dif = distance(latitude, longitude, lat, lon);
                         if (dif < minDif) {
                             closestLat = lat;
                             closestLon = lon;
@@ -55,7 +63,8 @@ class FuelsStation {
                             closestOpen = open;
                             minDif = dif;
                         }
-                    } else if ((button === 'btn4' || button === 'enterName') && parseFloat(lon).toFixed(0) === parseFloat(longitude).toFixed(0)
+                    } else if ((button === 'btn4' || button === 'enterName') &&  //find the nearest petrol stations by name
+                        parseFloat(lon).toFixed(0) === parseFloat(longitude).toFixed(0)
                         && parseFloat(lat).toFixed(0) === parseFloat(latitude).toFixed(0)) {
                         if (name === input) {
                             flag = true;
@@ -71,11 +80,27 @@ class FuelsStation {
             else if (button === 'btn4' || button === 'enterName'){
                 if (!flag) {
                     alert("There is not fuel station with that name!")
-                } else map.setView([latitude, longitude], 9);
+                } else map.setView([latitude, longitude], 11);
+            }
+            else if (button === 'btn2') {
+                getFiveNearest(range,fuels)
+                map.setView([latitude, longitude], 11)
             }
         }).error(function () {
             console.log('Base not loaded');
         });
+    }
+}
+
+function getFiveNearest(range,fuels){
+    range.sort(function(a, b){return a-b});
+    for (var i=0; i<5; i++){
+        for (var j=0; j<range.length; j++){
+            if (range[i] === fuels[j].rangeFuel){
+                var fuelsParts = fuels[j].station.split('/');
+                PutMarker(fuelsParts[0], fuelsParts[1], fuelsParts[2], fuelsParts[3], fuelsParts[4], fuelsParts[5]);
+            }
+        }
     }
 }
 
@@ -102,11 +127,14 @@ function PutMarker(lat, lon, name, diesel, lpg, open) {
 }
 
 function getYourLocation() {
-    if ("geolocation" in navigator) {
+    if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
         })
+    }
+    else {
+       alert("Geolocation is not supported by this browser.");
     }
 }
 
@@ -173,3 +201,6 @@ $(document).ready(function () {
         $('.stars span').addClass('active');
     });
 });
+
+
+
