@@ -30,9 +30,9 @@ body {
 
 .stars a {
     display: inline-block;
-    padding-right:4px;
+    padding-right: 4px;
     text-decoration: none;
-    margin:0;
+    margin: 0;
 }
 
 .stars a:after {
@@ -44,20 +44,21 @@ body {
     color: #9e9e9e;
 }
 
-.stars a:hover ~ a:after{
+.stars a:hover ~ a:after {
     color: #9e9e9e !important;
 }
-span.active a.active ~ a:after{
+
+span.active a.active ~ a:after {
     color: #9e9e9e;
 }
 
-span:hover a:after{
-    color:blue !important;
+span:hover a:after {
+    color: blue !important;
 }
 
 span.active a:after,
-.stars a.active:after{
-    color:blue;
+.stars a.active:after {
+    color: blue;
 }
 
 header {
@@ -100,7 +101,8 @@ ul li {
     font-weight: bold;
     font-size: 12px;
 }
-ul li:last-child{
+
+ul li:last-child {
     border: none;
 }
 
@@ -127,7 +129,7 @@ ul li:last-child{
     padding: 0 20px;
 }
 
-#map{
+#map {
     height: 440px;
     border: 1px solid #AAA;
 }
@@ -214,7 +216,8 @@ footer {
     margin-top: -10px;
     display: none;
 }
-label h5{
+
+label h5 {
     margin: 0;
 }
 
@@ -223,7 +226,9 @@ div.stars {
     display: inline-block;
 }
 
-input.star { display: none; }
+input.star {
+    display: none;
+}
 
 label.star {
     float: right;
@@ -231,6 +236,11 @@ label.star {
     font-size: 20px;
     color: #444;
     transition: all .2s;
+}
+
+label:hover {
+    color: green;
+    cursor: pointer;
 }
 
 input.star:checked ~ label.star:before {
@@ -244,78 +254,97 @@ input.star-5:checked ~ label.star:before {
     text-shadow: 0 0 20px #952;
 }
 
-input.star-1:checked ~ label.star:before { color: #F62; }
+input.star-1:checked ~ label.star:before {
+    color: #F62;
+}
 
-label.star:hover { transform: rotate(-15deg) scale(1.3); }
+label.star:hover {
+    transform: rotate(-15deg) scale(1.3);
+}
 
 label.star:before {
     content: '\f006';
     font-family: FontAwesome;
 }
 
-#popUpMarker{
+#popUpMarker {
     display: inline-block;
     text-align: center;
 }
-#popUpMarker h5{
+
+#popUpMarker h5 {
     font-size: 16px;
     color: #556052;
 }
-#popUpMarker li{
+
+#popUpMarker li {
     margin: 0 2px 2px 0;
     padding: 2px;
     border: black solid 2px;
 }
-#comment::placeholder{
+
+#comment::placeholder {
     font-size: 15px;
 }
 
 @media screen and (max-width: 1200px) {
-    *{
+    * {
         padding: 0;
         margin: 0;
     }
-    header h1{
+
+    header h1 {
         font-size: 220%;
     }
-    header h2{
+
+    header h2 {
         font-size: 100%;
     }
-    nav{
+
+    nav {
         font-size: 50%;
         width: 100%;
     }
-    .navigation{
+
+    .navigation {
         padding: 10px;
     }
-    nav ul li{
+
+    nav ul li {
         padding: 2px 5px 2px 5px;
         margin: 0 2px 0 2px;
         font-size: 40%;
     }
-    nav img, footer img, .search-form img{
+
+    nav img, footer img, .search-form img {
         width: 100%;
         -o-object-fit: contain;
         object-fit: contain;
     }
-    .btn{
+
+    .btn {
         width: 25px;
     }
-    .search h3{
+
+    .search h3 {
         font-size: 100%;
     }
-    .search-form{
+
+    .search-form {
         padding: 0;
         margin: 0;
     }
-    .search{
+
+    .search {
         padding: 10px 15px;
     }
-    .search input{
+
+    .search input {
         width: 100px;
         height: 35px;
     }
-    .search .btn{
+
+    .search .btn {
         font-size: 100%;
         padding: 1px;
         margin: 1px;
@@ -325,50 +354,62 @@ label.star:before {
         -ms-flex-direction: column;
         flex-direction: column;
     }
-    .search input::placeholder{
+
+    .search input::placeholder {
         font-size: 10px;
         text-align: center;
     }
-    .search-form div{
+
+    .search-form div {
         display: inline-block;
     }
-    #map{
+
+    #map {
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        height:400px;
+        height: 400px;
     }
+
     .icon-inner, .ionicon, svg {
-         display: inline-block;
+        display: inline-block;
         height: 50%;
         width: 50%;
     }
-    footer{
+
+    footer {
         padding: 30px 0px;
     }
-    .social-links{
+
+    .social-links {
         margin-top: 1px;
         font-size: 100%;
     }
-    footer h4{
+
+    footer h4 {
         font-size: 150%;
     }
-    .footer-link{
+
+    .footer-link {
         padding: 4px;
         margin: 0;
         font-size: 100%;
     }
-    #popUpMarker{
+
+    #popUpMarker {
         font-size: 5px;
     }
+
     label.star {
         padding: 6px;
         font-size: 10px;
     }
+
     .container {
         width: 90%;
     }
-    .container span{
+
+    .container span {
         margin-left: 3px;
     }
 }

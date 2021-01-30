@@ -1,18 +1,19 @@
 {
-  "name": "node-js-getting-started",
+  "name": "FuelUp",
   "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": "Simple app to find fuel stations in Macedonia",
   "engines": {
     "node": "12.x"
   },
-  "main": "index.js",
+  "main": "task03/index.js",
   "scripts": {
     "start": "node task03/index.js",
     "test": "node task03/test.js"
   },
   "dependencies": {
     "ejs": "^2.5.6",
-    "express": "^4.15.2"
+    "express": "^4.17.1",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "got": "^11.3.0",
@@ -20,12 +21,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "git+https://github.com/bloke-io/FuelUp-finki-DIANS20-21"
   },
   "keywords": [
     "node",
     "heroku",
     "express"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bloke-io/FuelUp-finki-DIANS20-21/issues"
+  },
+  "homepage": "https://github.com/bloke-io/FuelUp-finki-DIANS20-21#readme",
+  "author": ""
 }
