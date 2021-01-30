@@ -24,21 +24,21 @@
                     <ion-icon name="compass" class="icon-home"></ion-icon>
                 </a>
 
-                <label  id="btn2">NEAREST FUEL STATIONS AROUND YOU</label>
+                <label id="btn2">NEAREST FUEL STATIONS AROUND YOU</label>
             </li>
             <li>
                 <a href="#" class="navigation-home">
                     <ion-icon name="compass" class="icon-home"></ion-icon>
                 </a>
 
-                <label  id="btn3">NEAREST FUEL STATION</label>
+                <label id="btn3">NEAREST FUEL STATION</label>
             </li>
         </ul>
     </nav>
     <section class="search">
         <h3>Find the nearest petrol stations by name</h3>
         <div class="search-form">
-            <input placeholder="Fuel Station Name" id="enterName" />
+            <input placeholder="Fuel Station Name" id="enterName"/>
             <div class="btn">
                 <a href="#">
                     <ion-icon name="chevron-forward" id="btn4" class="btn-right"></ion-icon>
@@ -79,6 +79,7 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         subdomains: ['a', 'b', 'c']
     }).addTo(map);
+    map.on('click', onMapClick);
 </script>
 </body>
 </html>

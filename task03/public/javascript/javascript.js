@@ -1,15 +1,17 @@
-let latitude = null , longitude = null, marker = [], theMarker = {};
+let latitude = 41.6086, longitude = 21.7453, marker = [], theMarker = {};
 
 class FuelsStation {
     getFuels(button) {
-        let minDif = 99999, nearestFuel , flag, input, fuels= [], range = [];
+        let minDif = 99999, nearestFuel, flag, input, fuels = [], range = [];
         if (button === 'btn4' || button === 'enterName') {
-            input = $('#enterName').val(); flag = false;
+            input = $('#enterName').val();
+            flag = false;
             input = input[0].toUpperCase() + input.slice(1);
         }
         $.getJSON('benzinski.txt', function (data) {
             $.each(data.benzinski, function (i, fuel) {
-                let name = fuel.name, fuelLongitude = fuel.lon, fuelLatitude = fuel.lat, diesel = fuel.diesel, lpg = fuel.lpg, open = fuel.opening_hours;
+                let name = fuel.name, fuelLongitude = fuel.lon, fuelLatitude = fuel.lat, diesel = fuel.diesel,
+                    lpg = fuel.lpg, open = fuel.opening_hours;
                 if (name !== "" && name !== "none") {
                     if (button === 'btn1') {                                                                            //get all fuels station in macedonia
                         PutMarker(fuelLatitude, fuelLongitude, name, diesel, lpg, open);
@@ -43,14 +45,12 @@ class FuelsStation {
                 let fuelsParts = nearestFuel.split('/');
                 PutMarker(fuelsParts[0], fuelsParts[1], fuelsParts[2], fuelsParts[3], fuelsParts[4], fuelsParts[5]);
                 map.setView([latitude, longitude], 11);
-            }
-            else if (button === 'btn4' || button === 'enterName'){
+            } else if (button === 'btn4' || button === 'enterName') {
                 if (!flag) {
                     alert("There is not fuel station with that name or nearest you!")
                 } else map.setView([latitude, longitude], 11);
-            }
-            else if (button === 'btn2') {
-                getFiveNearest(range,fuels)
+            } else if (button === 'btn2') {
+                getFiveNearest(range, fuels)
                 map.setView([latitude, longitude], 11)
             }
         }).error(function () {
@@ -59,10 +59,25 @@ class FuelsStation {
     }
 }
 
-// function onMapClick(e) {
-//     alert("You clicked the map at " + e.latlng);
-//     //var marker = L.marker([e.latlng]).addTo(map);
-// }
+let clicked = 0, clicksOnMap = [];
+
+function onMapClick(e) {
+    if (clicked < 2) {
+        marker = L.marker().setLatLng(e.latlng).addTo(map).bindPopup("You clicked the map at " + e.latlng.toString()).openPopup();
+        clicksOnMap.push(e);
+        clicked++;
+        map.setView([e.latlng.lat, e.latlng.lng], 11);
+    } else {
+        console.log('Merge Request !');
+        let latlngs = Array();
+        latlngs.push(clicksOnMap[0].latlng);
+        latlngs.push(clicksOnMap[1].latlng);
+        let rectOptions = {color: 'Red', weight: 1}
+        let polyline = L.polyline(latlngs, rectOptions);
+        polyline.addTo(map);
+        map.fitBounds(polyline.getBounds());
+    }
+}
 
 
 function deleteLayers() {                                                                                               //Gi brise prethodno postavenite markeri na mapata od
@@ -83,17 +98,17 @@ function arePointsNear(myLatitude, myLongitude, fuelLatitude, fuelLongitude, km)
 function distance(myLatitude, myLongitude, fuelLatitude, fuelLongitude) {                                               //
     let p = 0.017453292519943295;    // Math.PI / 180
     let c = Math.cos;
-    let a = 0.5 - c((fuelLatitude - myLatitude) * p)/2 +
+    let a = 0.5 - c((fuelLatitude - myLatitude) * p) / 2 +
         c(myLatitude * p) * c(fuelLatitude * p) *
-        (1 - c((fuelLongitude - myLongitude) * p))/2;
+        (1 - c((fuelLongitude - myLongitude) * p)) / 2;
     return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
 }
 
-function getFiveNearest(range,fuels){                                                                                   // Ova funkcija gi pronaogja najbliskite pet od prethodno
-    range.sort(function(a, b){return a-b});                                                                             // povikanata funkcija arePointsNear() i so toa se pronaogjat
-    for (let i=0; i<5; i++){                                                                                            // najbliskite pet benzinski
-        for (let j=0; j<range.length; j++){
-            if (range[i] === fuels[j].rangeFuel){
+function getFiveNearest(range, fuels) {                                                                                   // Ova funkcija gi pronaogja najbliskite pet od prethodno
+    range.sort(function (a, b) {return a - b});                                                                             // povikanata funkcija arePointsNear() i so toa se pronaogjat
+    for (let i = 0; i < 5; i++) {                                                                                            // najbliskite pet benzinski
+        for (let j = 0; j < range.length; j++) {
+            if (range[i] === fuels[j].rangeFuel) {
                 let fuelsParts = fuels[j].station.split('/');
                 PutMarker(fuelsParts[0], fuelsParts[1], fuelsParts[2], fuelsParts[3], fuelsParts[4], fuelsParts[5]);
             }
@@ -129,9 +144,8 @@ function getYourLocation() {                                                    
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
         })
-    }
-    else {
-       alert("Geolocation is not supported by this browser.");
+    } else {
+        alert("Geolocation is not supported by this browser.");
     }
 }
 
