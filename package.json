@@ -5,9 +5,9 @@
   "engines": {
     "node": "12.x"
   },
-  "main": "server.js",
+  "main": "task03/index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node task03/index.js",
     "test": "node task03/test.js"
   },
   "dependencies": {
