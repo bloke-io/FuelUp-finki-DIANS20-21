@@ -63,11 +63,13 @@ let clicked = 0, clicksOnMap = [];
 
 function onMapClick(e) {
     if (clicked < 2) {
-        marker = L.marker().setLatLng(e.latlng).addTo(map).bindPopup("You clicked the map at " + e.latlng.toString()).openPopup();
+        let LamMarker = L.marker().setLatLng(e.latlng).addTo(map).bindPopup("You clicked the map at " + e.latlng.toString()).openPopup();
+        marker.push(LamMarker);
         clicksOnMap.push(e);
         clicked++;
         map.setView([e.latlng.lat, e.latlng.lng], 11);
     } else {
+        clicked++;
         console.log('Merge Request !');
         let latlngs = Array();
         latlngs.push(clicksOnMap[0].latlng);
@@ -76,6 +78,11 @@ function onMapClick(e) {
         let polyline = L.polyline(latlngs, rectOptions);
         polyline.addTo(map);
         map.fitBounds(polyline.getBounds());
+        if (clicked < 5){
+            deleteLayers();
+            map.removeLayer(polyline);
+            clicked = 0;
+        }
     }
 }
 
