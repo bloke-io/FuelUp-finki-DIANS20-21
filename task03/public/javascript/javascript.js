@@ -1,4 +1,4 @@
-let latitude = 41.6086, longitude = 21.7453, marker = [], theMarker = {};
+let latitude = 41.6086, longitude = 21.7453, marker = [], theMarker = [];
 
 class FuelsStation {
     getFuels(button) {
